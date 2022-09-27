@@ -26,7 +26,6 @@
       async checkLoggedIn(){
           var resp = await fetch("/.auth/me");
           var json = await resp.json();
-          this.data =  json;
           const { clientPrincipal } = json;
           this.isAuthenticated = !!clientPrincipal;
       }
