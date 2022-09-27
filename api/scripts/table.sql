@@ -1,0 +1,8 @@
+
+CREATE TABLE todos (
+	Id serial PRIMARY KEY,
+	UserName VARCHAR ( 255 ) ,
+	Title VARCHAR ( 255 ) NOT NULL,
+        IsCompleted BOOLEAN DEFAULT 'f',
+	CreatedOn TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
