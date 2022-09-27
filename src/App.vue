@@ -49,11 +49,12 @@ export default {
 
     return {
       title: "my todos",
-      todos: [
-        { id: 1, title: "Taste JavaScript", isCompleted: true },
-        { id: 2, title: "Buy a unicorn", isCompleted: false },
-        { id: 3, title: "Learn some vuejs ;)", isCompleted: false }
-      ],
+      todos: [],
+      //[
+        //{ id: 1, title: "Taste JavaScript", isCompleted: true },
+        //{ id: 2, title: "Buy a unicorn", isCompleted: false },
+        //{ id: 3, title: "Learn some vuejs ;)", isCompleted: false }
+      //],
       filter: "all"
     };
   },
