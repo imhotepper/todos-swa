@@ -32,6 +32,7 @@ namespace daiot
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation($"Request headers: {JsonConvert.SerializeObject(req.Headers)}");
 
             
             return new OkObjectResult(_todos);
