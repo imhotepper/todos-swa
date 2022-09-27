@@ -1,7 +1,7 @@
 <template>
  <footer class="info">
-<p>isAuth : {{data}}</p> 
-      <p v-shoow="isAuthenticated"><a href=".auth/login/google">Google login</a></p>
+      <p v-show="!isAuthenticated"><a href=".auth/login/google">Google login</a></p>
+      <p v-show="isAuthenticated"><a href=".auth/logout">Logout</a></p>
       <!-- Remove the below line ↓ -->
       <p>
         Template by
@@ -21,14 +21,14 @@
 <script>
   export default {
     name: "TodosActions",
-    data(){return {"isAuthenticated": false, data: null}},
+    data(){return {"isAuthenticated": false}},
     methods: {
       async checkLoggedIn(){
           var resp = await fetch("/.auth/me");
           var json = await resp.json();
           this.data =  json;
           const { clientPrincipal } = json;
-          this.isAuthenticated = clientPrincipal != null;
+          this.isAuthenticated = !!clientPrincipal;
       }
     },
     async created(){
