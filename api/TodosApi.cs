@@ -25,6 +25,10 @@ namespace daiot
     public static class TodosApi
     {
         private static List<Todo> _todos = new();
+
+        public static string GetCurrentUserEmail(this HttpRequest req){
+            return req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
+        }
         
         [FunctionName("todos-get")]
         public static IActionResult Gets(
@@ -33,6 +37,8 @@ namespace daiot
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
             log.LogInformation($"Request headers: {JsonConvert.SerializeObject(req.Headers)}");
+           
+            log.LogInformation($"HTTP trigger current user: {req.GetCurrentUserEmail()}");
 
             
             return new OkObjectResult(_todos);
@@ -60,6 +66,7 @@ namespace daiot
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation($"HTTP trigger current user: {request.GetCurrentUserEmail()}");
 
             _todos = _todos.Where(x => x.Id != id).ToList();
 
@@ -74,6 +81,8 @@ namespace daiot
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
+            log.LogInformation($"HTTP trigger current user: {request.GetCurrentUserEmail()}");
+
 
             var todo = _todos.FirstOrDefault(x => x.Id == id);
             if (null != todo) todo.IsCompleted = !todo.IsCompleted;
